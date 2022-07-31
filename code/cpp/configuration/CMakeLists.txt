@@ -1,8 +1,6 @@
 
 project(Configuration)
 include_directories(src)
-
-# message(STATUS "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxTEST")
 message(STATUS "CMAKE_CURRENT_BINARY_DIR>>>>: ${CMAKE_CURRENT_BINARY_DIR}")
 add_executable(configuration main.cpp)
 target_link_libraries(configuration PUBLIC Json)
@@ -18,3 +16,4 @@ target_link_libraries(ConfigurationTest gtest_main Json)
 include(GoogleTest)
 gtest_discover_tests(ConfigurationTest)
 
+# WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}

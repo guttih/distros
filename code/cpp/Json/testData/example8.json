@@ -1,0 +1,28 @@
+{
+  "results": [
+    {
+      "name": "Keflavíkurflugvöllur",
+      "time": "2019-11-22 07:00:00",
+      "err": "",
+      "link": "http://www.vedur.is/vedur/athuganir/kort/faxafloi/#group=11&station=990",
+      "F": "3",
+      "FX": "5",
+      "FG": "6",
+      "D": "WSW",
+      "T": "6.6",
+      "W": "Alskýjað",
+      "V": "",
+      "N": "",
+      "P": "1002",
+      "RH": "100",
+      "SNC": "",
+      "SND": "",
+      "SED": "",
+      "RTE": "",
+      "TD": "6.6",
+      "R": "",
+      "id": "990",
+      "valid": "1"
+    }
+  ]
+}

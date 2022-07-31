@@ -1,0 +1,8 @@
+{
+    "definitions": {
+                    "Schema1": {
+                                "not": { "$ref1": "#/definitions/Schema1" }
+                            }
+    },
+    "$ref2": "#/definitions/Schema2"
+}

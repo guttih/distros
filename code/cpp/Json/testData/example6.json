@@ -1,0 +1,48 @@
+{
+    "Logging": {
+        "IncludeScopes": false,
+        "blaneistuff": true,
+        "tala": 100,
+        "minustala": -23,
+        "LogLevel": {
+            "Default": "Debug",
+            "System": "Information",
+            "Microsoft": "Information",
+            "LogLevel": {
+                "Default": "Debug",
+                "System": "Information",
+                "Microsoft": "Information",
+                "LogLevel": {
+                    "Default": "Debug",
+                    "System": "Information",
+                    "Microsoft": "Information",
+                    "LogLevel": {
+                        "Default": "Debug",
+                        "System": "Information",
+                        "Microsoft": "Information",
+                        "LogLevel": {
+                            "Default": "Debug",
+                            "System": "Information",
+                            "Microsoft": "Information",
+                            "arrayofstuff": [ "one", 3, -3, -0.11, 21, 32.33 ]
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "array": [
+        12.3456,
+        -2.3456,
+        0.3,
+        -0.1,
+        -0.22,
+        -3,
+        3,
+        0.2,
+        true,
+        null,
+        false,
+        0
+    ]
+}

@@ -1,0 +1,15 @@
+[
+  "asdf",
+  33, 
+    {
+        "$str1": "strengur1",
+        "tala": 123,
+        "$str2": "strengur2",
+        "$str3": "strengur3",
+        "$str4": "strengur4"
+
+    },
+    123456,
+  -23456,
+  -456.12345
+]

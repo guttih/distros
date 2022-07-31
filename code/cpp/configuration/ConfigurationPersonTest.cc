@@ -1,7 +1,7 @@
 
 // File: MyGoogleTestProject.cc
 #include <gtest/gtest.h>
-#include "src/Person.cpp"
+#include "Person.cpp"
 // Demonstrate some basic assertions.
 
 TEST( ConfigurationPersonTest, Person_SetAndGet )

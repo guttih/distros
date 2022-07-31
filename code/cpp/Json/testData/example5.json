@@ -1,0 +1,24 @@
+{ "keyfloat": 5.2, 
+  "records": [
+    {
+      "field1": "outer",
+      "field2": "thought"
+    },
+    {
+        "field2": "thought",
+        "field1": "outer",
+        "floatNumber": -55.23,
+        "negativefloatNumber": -0.23
+    },
+    "strengur í record array"
+  ],
+  "special message": "hello, world!",
+  "arrayOfStuf": [
+    "string1",
+    "String2",
+    123,
+    456,
+    -789,
+    { "prufakey": "prufakeyvalue" }
+  ]
+}

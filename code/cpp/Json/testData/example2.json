@@ -1,0 +1,12 @@
+{
+    "definitions": {
+                    "parentNot":{
+                                "not":  { "$notref1": "#/definitions/Schema1",
+                    "$notref2": "#/definitions/Schema2"
+                    }
+                    }
+                                        
+    },
+    "$str1": "strengur1",
+	"$str2": "strengur2"
+}

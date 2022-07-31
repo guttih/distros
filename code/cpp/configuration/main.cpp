@@ -25,7 +25,13 @@ int main()
 {
     std::cout << "Hello world from configurationx\n";
     std::cout << "Json version: " << JSON_VERSION << std::endl;
-    JsonG::Json jd( "{\"hello\":\"world\"}" );
-    std::cout << jd.toString().c_str() << "\n";
+    JsonG::Json json( "{ \"One\": 1 }" );
+    std::cout << json.toString().c_str() << "\n";
     getAndSetPerson();
+
+    JsonData *jd = json.getRootObject();
+    String now = jd->getChildAt( 0 )->getValue();
+    std::string ss = now.c_str();
+    std::cout << "aaaa" << ss << "\n";
+    std::cout << "bbbb" << jd->toString().c_str() << "\n";
 }
