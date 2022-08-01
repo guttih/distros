@@ -1,7 +1,6 @@
 #ifndef JsonFile_H
 #define JsonFile_H
-#include <iostream>
-
+#include <fstream>
 
 template< typename T >
 class JsonFile : public T
@@ -38,14 +37,12 @@ public:
 
     std::string fileToString( const char *fileName )
     {
-        // std::ifstream inFile( fileName );
-        // inFile.open( fileName );   // open the input file
 
-        // std::stringstream strStream;
-        // strStream << inFile.rdbuf();      // read the file
-        std::string str = "asdf";
+        std::ifstream ifs( fileName, std::ifstream::in );
+        std::stringstream buffer;
+        buffer << ifs.rdbuf();
+        std::string str = buffer.str();
         return str;
-        // return strStream.str();
     }
 
     bool load( const char *filename = NULL )
@@ -54,6 +51,5 @@ public:
         return this->setFromJson( this->fileToString( fName.c_str() ).c_str() );
     }
 };
-
 
 #endif

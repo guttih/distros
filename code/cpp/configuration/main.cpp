@@ -2,6 +2,7 @@
 
  #include <Json/Json.h>
 #include <Json/JsonFile.h>
+#include <Json/JsonFileCollection.h>
 #include "Person.cpp"
 
 
@@ -21,8 +22,25 @@ void getAndSetPerson()
     // QCOMPARE( jf.toJsonString().c_str(), orgJsonStr.c_str() );
     std::cout << jf.toJsonString().c_str() << "\n";
 }
+
+void getAndSetPersonCollection()
+{
+    std::cout << "------- getAndSetPersonCollection ------\n";
+    Person person( "Gudjon", 51 );;
+    JsonFileCollection< Person > coll( "coll-person.json" );
+    coll.addItem( person );
+
+    // QVERIFY( coll.save() );
+    // coll.clear();
+    // QVERIFY( coll.count() == 0 );
+    // Person second;
+    // QVERIFY( coll.load() );
+    // QVERIFY( coll.getFirstItem( &second ) );
+    // QVERIFY( person == second );
+}
 int main()
 {
+    getAndSetPersonCollection();
     std::cout << "Hello world from configurationx\n";
     std::cout << "Json version: " << JSON_VERSION << std::endl;
     JsonG::Json json( "{ \"One\": 1 }" );
@@ -34,4 +52,6 @@ int main()
     std::string ss = now.c_str();
     std::cout << "aaaa" << ss << "\n";
     std::cout << "bbbb" << jd->toString().c_str() << "\n";
+
+
 }

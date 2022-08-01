@@ -30,6 +30,7 @@ endif()
 add_executable(
     JsonTest
     JsonTest.cc
+    JsonCollectionTest.cc
 )
 
 target_link_libraries(JsonTest gtest_main Json)

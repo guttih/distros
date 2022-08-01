@@ -37,7 +37,7 @@ public:
         }
     }
 
-    JsonG::String toJsonString() const
+    String toJsonString() const
     {
         String ss="[";
         for( typename std::vector< T >::const_iterator it=_list.begin(); it != _list.end(); it++ )
@@ -54,7 +54,7 @@ public:
 
     bool setFromJson( const char *jsonString )
     {
-        Json json( jsonString );
+        JsonG::Json json( jsonString );
 
         if( !json.isValid() )
             return false;
