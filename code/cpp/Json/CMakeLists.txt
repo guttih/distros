@@ -14,6 +14,8 @@ add_library(
     src/Json/JsonFileCollection.h
     src/Json/JsonFile.h
     src/Json/NotImplementedException.h
+    src/Json/Version.h
+    src/Json/Version.cpp
 )
 
 set(ENABLE_TESTS TRUE)
@@ -31,6 +33,7 @@ add_executable(
     JsonTest
     JsonTest.cc
     JsonCollectionTest.cc
+    VersionTest.cc
 )
 
 target_link_libraries(JsonTest gtest_main Json)
