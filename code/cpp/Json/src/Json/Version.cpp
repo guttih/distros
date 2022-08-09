@@ -1,19 +1,17 @@
 #include "Version.h"
 
+// assignment operator
 Version & Version::operator=( const Version &rhs )
 {
 
-    _version[ VERSION::MAJOR ] = rhs.getMajor();
-    _version[ VERSION::MINOR ] = rhs.getMinor();
-    _version[ VERSION::PATCH ] = rhs.getPatch();
-    _version[ VERSION::BUILD ] = rhs.getBuild();
+    set( rhs.getMajor(), rhs.getMinor(), rhs.getPatch(), rhs.getBuild() );
 
     return *this;
 }
 
 Version &Version::operator+=( const int &incrementBuild )
 {
-    _version[ VERSION::BUILD ] += incrementBuild;
+    setBuild( _version[ VERSION::BUILD ]=getBuild() + incrementBuild );
     return *this;
 }
 
@@ -33,24 +31,24 @@ Version Version::operator++( int incrementBuild )
 }
 bool Version::operator==( const Version &rhs )
 {
-    return _version[ VERSION::MAJOR ] == rhs.getMajor() &&
-           _version[ VERSION::MINOR ] == rhs.getMinor() &&
-           _version[ VERSION::PATCH ] == rhs.getPatch() &&
-           _version[ VERSION::BUILD ] == rhs.getBuild();
+    return getMajor() == rhs.getMajor() &&
+           getMinor() == rhs.getMinor() &&
+           getPatch() == rhs.getPatch() &&
+           getBuild() == rhs.getBuild();
 }
 bool Version::operator>( const Version &rhs )
 {
-    return _version[ VERSION::MAJOR ] > rhs.getMajor() ||
-           _version[ VERSION::MINOR ] > rhs.getMinor() ||
-           _version[ VERSION::PATCH ] > rhs.getPatch() ||
-           _version[ VERSION::BUILD ] > rhs.getBuild();
+    return getMajor() > rhs.getMajor() ||
+           getMinor() > rhs.getMinor() ||
+           getPatch() > rhs.getPatch() ||
+           getBuild() > rhs.getBuild();
 }
 bool Version::operator<( const Version &rhs )
 {
-    return _version[ VERSION::MAJOR ] < rhs.getMajor() ||
-           _version[ VERSION::MINOR ] < rhs.getMinor() ||
-           _version[ VERSION::PATCH ] < rhs.getPatch() ||
-           _version[ VERSION::BUILD ] < rhs.getBuild();
+    return getMajor() < rhs.getMajor() ||
+           getMinor() < rhs.getMinor() ||
+           getPatch() < rhs.getPatch() ||
+           getBuild() < rhs.getBuild();
 }
 bool Version::operator!=( const Version &rhs )
 {
@@ -123,7 +121,10 @@ Version::Version( unsigned int major, unsigned int minor, unsigned int patch, un
 
 Version::~Version()
 {
-    delete[] m_versionFull;
+    if( m_versionString )
+    {
+        delete[] m_versionString;
+    }
 }
 
 const char *Version::itoa( unsigned int val, int base )
@@ -147,11 +148,11 @@ const char *Version::itoa( unsigned int val, int base )
 
 const char *Version::c_str()
 {
-    if( !m_versionFull )
+    if( !m_versionString )
     {
-        m_versionFull = new char[ MAX_VERSION_STRING_LEN ];
+        m_versionString = new char[ MAX_VERSION_STRING_LEN ];
     }
-    m_versionFull[ 0 ] = '\0';
+    m_versionString[ 0 ] = '\0';
 
     unsigned int val, pos = -1;
     for( int ver = VERSION::MAJOR; ver <= VERSION::BUILD; ver++ )
@@ -162,16 +163,16 @@ const char *Version::c_str()
         unsigned int i = 0;
         while( p[ i ] != '\0' )
         {
-            m_versionFull[ ++pos ] = p[ i++ ];
+            m_versionString[ ++pos ] = p[ i++ ];
         }
         if( ver < 3 )
         {
-            m_versionFull[ ++pos ] = '.';
+            m_versionString[ ++pos ] = '.';
         }
     }
-    m_versionFull[ ++pos ] = '\0';
+    m_versionString[ ++pos ] = '\0';
 
-    return m_versionFull;
+    return m_versionString;
 }
 void Version::set( unsigned int major, unsigned int minor, unsigned int patch, unsigned int build )
 {
@@ -179,26 +180,26 @@ void Version::set( unsigned int major, unsigned int minor, unsigned int patch, u
     _version[ VERSION::MINOR ] = minor;
     _version[ VERSION::PATCH ] = patch;
     _version[ VERSION::BUILD ] = build;
-    if( m_versionFull )
-        m_versionFull[ 0 ] = '\0';
+    if( m_versionString )
+        m_versionString[ 0 ] = '\0';
 }
 
 void Version::setMajor( unsigned int value )
 {
-    set( value, _version[ 1 ], _version[ 2 ], _version[ 3 ] );
+    set( value, 0, 0, 0 );
 }
 
 void Version::setMinor( unsigned int value )
 {
-    set( _version[ 0 ], value, _version[ 2 ], _version[ 3 ] );
+    set( getMajor(), value, 0, 0 );
 }
 void Version::setPatch( unsigned int value )
 {
-    set( _version[ 0 ], _version[ 1 ], value, _version[ 3 ] );
+    set( getMajor(), getMinor(), value, 0 );
 }
 void Version::setBuild( unsigned int value )
 {
-    set( _version[ 0 ], _version[ 1 ], _version[ 2 ], value );
+    set( getMajor(), getMinor(), getPatch(), value );
 }
 
 unsigned int Version::getMajor() const
@@ -217,3 +218,21 @@ unsigned int Version::getBuild() const
 {
     return _version[ VERSION::BUILD ];
 }
+
+void Version::IncrementMajor()
+{
+    setMajor( _version[ VERSION::MAJOR ]=getMajor() + 1 );
+}
+void Version::IncrementMinor()
+{
+    setMinor( _version[ VERSION::MINOR ]=getMinor() + 1 );
+}
+void Version::IncrementPatch()
+{
+    setPatch( _version[ VERSION::PATCH ]=getPatch() + 1 );
+}
+void Version::IncrementBuild()
+{
+    setBuild( _version[ VERSION::BUILD ]=getBuild() + 1 );
+}
+

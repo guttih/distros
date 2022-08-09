@@ -17,7 +17,7 @@ class Version
 {
 private:
     unsigned int _version[ 4 ] = { 0, 0, 0, 0 };
-    char *m_versionFull = nullptr;
+    char *m_versionString = nullptr;
     const char *itoa( unsigned int val, int base );
 
 public:
@@ -33,15 +33,63 @@ public:
     bool operator>=( const Version &rhs );
     bool operator<=( const Version &rhs );
 
+    /**
+     * @brief Returns the version as a string.  Note after you change any of the version numbers this function must be called to update the string.
+     *
+     * @return const char*
+     */
     const char *c_str();
     Version( const char *version );
     Version( unsigned int major, unsigned int minor, unsigned int patch, unsigned int build );
     void set( const char *value );
     void set( unsigned int major, unsigned int minor, unsigned int patch, unsigned int build );
+    /**
+     * @brief Set the Major version number and minor- patch- and build numbers to zero
+     *
+     * @param major
+     */
     void setMajor( unsigned int major );
+    /**
+     * @brief Set the Minor version number and patch and build numbers to zero
+     *
+     * @param minor
+     */
     void setMinor( unsigned int minor );
+    /**
+     * @brief Set the Patch version number and build number to zero
+     *
+     * @param patch
+     */
     void setPatch( unsigned int patch );
+    /**
+     * @brief Set the Build version number
+     *
+     * @param patch
+     */
     void setBuild( unsigned int build );
+
+    /**
+     * @brief Increment the Major version number set and minor, patch and build number to zero
+     *
+     */
+    void IncrementMajor();
+
+    /**
+     * @brief Increment the Minor version number set and patch and build number to zero
+     *
+     */
+    void IncrementMinor();
+    /**
+     * @brief Increment the Patch version number set and build number to zero
+     *
+     */
+    void IncrementPatch();
+    /**
+     * @brief Increment the Build version number
+     *
+     */
+    void IncrementBuild();
+
     unsigned int getMajor() const;
     unsigned int getMinor() const;
     unsigned int getPatch() const;

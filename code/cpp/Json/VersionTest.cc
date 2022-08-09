@@ -51,3 +51,40 @@ TEST( VersionTest, prefixIncrement ) {
     EXPECT_FALSE( ++ver == ver2 );
     EXPECT_EQ( ver.getBuild(), 2 );
 }
+
+TEST( VersionTest, IncrementMajor ) {
+    Version ver( "1.1.1.1" );
+    ver.IncrementMajor();
+    EXPECT_EQ( ver.getMajor(), 2 );
+    EXPECT_EQ( ver.getMinor(), 0 );
+    EXPECT_EQ( ver.getPatch(), 0 );
+    EXPECT_EQ( ver.getBuild(), 0 );
+}
+
+TEST( VersionTest, IncrementMinor ) {
+    Version ver( "1.1.1.1" );
+    ver.IncrementMinor();
+    EXPECT_EQ( ver.getMajor(), 1 );
+    EXPECT_EQ( ver.getMinor(), 2 );
+    EXPECT_EQ( ver.getPatch(), 0 );
+    EXPECT_EQ( ver.getBuild(), 0 );
+}
+
+TEST( VersionTest, IncrementPatch ) {
+    Version ver( "1.1.1.1" );
+    ver.IncrementPatch();
+    EXPECT_EQ( ver.getMajor(), 1 );
+    EXPECT_EQ( ver.getMinor(), 1 );
+    EXPECT_EQ( ver.getPatch(), 2 );
+    EXPECT_EQ( ver.getBuild(), 0 );
+}
+
+TEST( VersionTest, IncrementBuild ) {
+    Version ver( "1.1.1.1" );
+    ver.IncrementBuild();
+    EXPECT_EQ( ver.getMajor(), 1 );
+    EXPECT_EQ( ver.getMinor(), 1 );
+    EXPECT_EQ( ver.getPatch(), 1 );
+    EXPECT_EQ( ver.getBuild(), 2 );
+}
+
