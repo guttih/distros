@@ -11,7 +11,7 @@ Version & Version::operator=( const Version &rhs )
 
 Version &Version::operator+=( const int &incrementBuild )
 {
-    setBuild( _version[ VERSION::BUILD ]=getBuild() + incrementBuild );
+    setBuild( _version[ VERSION::BUILD ] = getBuild() + incrementBuild );
     return *this;
 }
 
@@ -146,7 +146,7 @@ const char *Version::itoa( unsigned int val, int base )
     }
 }
 
-const char *Version::c_str()
+const char *Version::c_str( VERSION showLastZeroPos )
 {
     if( !m_versionString )
     {
@@ -155,7 +155,21 @@ const char *Version::c_str()
     m_versionString[ 0 ] = '\0';
 
     unsigned int val, pos = -1;
-    for( int ver = VERSION::MAJOR; ver <= VERSION::BUILD; ver++ )
+    int lastSlot = VERSION::BUILD;
+    if( _version[ VERSION::BUILD ] == 0 && showLastZeroPos < VERSION::BUILD )
+    {
+        lastSlot--;
+        if( _version[ VERSION::PATCH ] == 0 && showLastZeroPos < VERSION::PATCH )
+        {
+            lastSlot--;
+            if( _version[ VERSION::MINOR ] ==  0 && showLastZeroPos < VERSION::MINOR )
+            {
+                lastSlot--;
+            }
+        }
+    }
+
+    for( int ver = VERSION::MAJOR; ver <= lastSlot; ver++ )
     {
         val = _version[ ver ];
 
@@ -165,7 +179,7 @@ const char *Version::c_str()
         {
             m_versionString[ ++pos ] = p[ i++ ];
         }
-        if( ver < 3 )
+        if( ver < lastSlot )
         {
             m_versionString[ ++pos ] = '.';
         }
@@ -221,18 +235,24 @@ unsigned int Version::getBuild() const
 
 void Version::IncrementMajor()
 {
-    setMajor( _version[ VERSION::MAJOR ]=getMajor() + 1 );
+    setMajor( _version[ VERSION::MAJOR ] = getMajor() + 1 );
 }
 void Version::IncrementMinor()
 {
-    setMinor( _version[ VERSION::MINOR ]=getMinor() + 1 );
+    setMinor( _version[ VERSION::MINOR ] = getMinor() + 1 );
 }
 void Version::IncrementPatch()
 {
-    setPatch( _version[ VERSION::PATCH ]=getPatch() + 1 );
+    setPatch( _version[ VERSION::PATCH ] = getPatch() + 1 );
 }
 void Version::IncrementBuild()
 {
-    setBuild( _version[ VERSION::BUILD ]=getBuild() + 1 );
+    setBuild( _version[ VERSION::BUILD ] = getBuild() + 1 );
 }
 
+Version Version::operator+( const int &incrementBuild )
+{
+    Version tmp( *this );
+    tmp += incrementBuild;
+    return tmp;
+}

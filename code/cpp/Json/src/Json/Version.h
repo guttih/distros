@@ -23,9 +23,10 @@ private:
 public:
     // operators
     Version &operator=( const Version &rhs );
-    Version &operator++();        // Prefix increment operator.
-    Version operator++( int incrementBuild );// Postfix increment operator.
+    Version &operator++();                  // Prefix increment operator.
+    Version operator++( int incrementBuild ); // Postfix increment operator.
     Version &operator+=( const int &incrementBuild );
+    Version operator+( const int &incrementBuild );
     bool operator==( const Version &rhs );
     bool operator>( const Version &rhs );
     bool operator<( const Version &rhs );
@@ -34,13 +35,20 @@ public:
     bool operator<=( const Version &rhs );
 
     /**
-     * @brief Returns the version as a string.  Note after you change any of the version numbers this function must be called to update the string.
+     * @brief Returns the version as a string.  Note after you change any of the
+     *        version numbers this function must be called to update the string.
      *
+     * @param showLastZeroPos Do not print trailing zeros after this significance.
+     *                          For example, if version is 3.0.0.0 then
+     *                          VERSION::BUILD will return "3.0.0.0"
+     *                          VERSION::PATCH will return "3.0.0"
+     *                          VERSION::MINOR will return "3.0"
+     *                          VERSION::MAJOR will return "3"
      * @return const char*
      */
-    const char *c_str();
-    Version( const char *version );
-    Version( unsigned int major, unsigned int minor, unsigned int patch, unsigned int build );
+    const char *c_str( VERSION showLastZeroPos = VERSION::MINOR );
+    Version( unsigned int major, unsigned int minor, unsigned int patch = 0, unsigned int build = 0 );
+    Version( const char *version = nullptr );
     void set( const char *value );
     void set( unsigned int major, unsigned int minor, unsigned int patch, unsigned int build );
     /**

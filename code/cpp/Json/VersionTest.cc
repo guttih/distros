@@ -88,3 +88,31 @@ TEST( VersionTest, IncrementBuild ) {
     EXPECT_EQ( ver.getBuild(), 2 );
 }
 
+TEST( VersionTest, Addition ) {
+    Version ver( "1.1.1.1" ), ver2;
+    ver = ver + 2;
+    EXPECT_EQ( ver.getMajor(), 1 );
+    EXPECT_EQ( ver.getMinor(), 1 );
+    EXPECT_EQ( ver.getPatch(), 1 );
+    EXPECT_EQ( ver.getBuild(), 3 );
+}
+
+TEST( VersionTest, toString ) {
+    Version ver( "1.1.1.0" );
+    EXPECT_EQ( ver.getMajor(), 1 );
+    EXPECT_EQ( ver.getMinor(), 1 );
+    EXPECT_EQ( ver.getPatch(), 1 );
+    EXPECT_EQ( ver.getBuild(), 0 );
+    EXPECT_STREQ( "1.1.1", ver.c_str() );
+    ver.setPatch( 4 );
+    EXPECT_STREQ( "1.1.4", ver.c_str( VERSION::PATCH ) );
+    ver.setMinor( 2 );
+    EXPECT_STREQ( "1.2", ver.c_str( VERSION::MINOR ) );
+    ver.setMajor( 3 );
+    EXPECT_STREQ( "3", ver.c_str( VERSION::MAJOR ) );
+    EXPECT_STREQ( "3.0", ver.c_str( VERSION::MINOR ) );
+    EXPECT_STREQ( "3.0.0", ver.c_str( VERSION::PATCH ) );
+    EXPECT_STREQ( "3.0.0.0", ver.c_str( VERSION::BUILD ) );
+    EXPECT_STREQ( "3.0", ver.c_str() );
+}
+
