@@ -1,0 +1,2 @@
+// the configured options and settings for JsonG
+#define JsonG_VERSION_STRING "@JsonG_VERSION_MAJOR@.@JsonG_VERSION_MINOR@.@JsonG_VERSION_PATCH@.@JsonG_VERSION_TWEAK@"

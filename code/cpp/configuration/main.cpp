@@ -3,7 +3,10 @@
  #include <Json/Json.h>
 #include <Json/JsonFile.h>
 #include <Json/JsonFileCollection.h>
+#include "Json/Version.h"
 #include "Person.cpp"
+#include "ConfigurationConfig.h"
+// #include <Json/JsonGConfig.h>
 
 
 
@@ -17,9 +20,6 @@ void getAndSetPerson()
     String orgJsonStr="{\"name\":\"tveir\",\"age\":2}";
     jf.setFromJson( pr.toJsonString().c_str() );
     std::cout << "Filename:" << jf.getFilename().c_str() << std::endl;
-    // QCOMPARE( jf.getFilename().c_str(), "person.json" );
-    // QVERIFY( jf.setFromJson( orgJsonStr.c_str() ) );
-    // QCOMPARE( jf.toJsonString().c_str(), orgJsonStr.c_str() );
     std::cout << jf.toJsonString().c_str() << "\n";
 }
 
@@ -29,20 +29,15 @@ void getAndSetPersonCollection()
     Person person( "Gudjon", 51 );;
     JsonFileCollection< Person > coll( "coll-person.json" );
     coll.addItem( person );
-
-    // QVERIFY( coll.save() );
-    // coll.clear();
-    // QVERIFY( coll.count() == 0 );
-    // Person second;
-    // QVERIFY( coll.load() );
-    // QVERIFY( coll.getFirstItem( &second ) );
-    // QVERIFY( person == second );
 }
 int main()
 {
+    Version versionConfig( Configuration_VERSION_STRING );
+    // Version versionJsonG( JsonG_VERSION_STRING );
+    std::cout << "Configuration version : " << versionConfig.c_str() << "\n";
+    // std::cout << "JsonG version         : " << versionJsonG.c_str() << "\n";
     getAndSetPersonCollection();
     std::cout << "Hello world from configurationx\n";
-    std::cout << "Json version: " << JSON_VERSION << std::endl;
     JsonG::Json json( "{ \"One\": 1 }" );
     std::cout << json.toString().c_str() << "\n";
     getAndSetPerson();

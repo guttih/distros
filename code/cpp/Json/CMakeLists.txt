@@ -1,5 +1,7 @@
 # https://stackoverflow.com/questions/17511496/how-to-create-a-shared-library-with-cmake#answer-45843676
 
+project(JsonG VERSION 0.4.2.0)
+
 add_library(
     Json
     src/Json/String.h
@@ -28,6 +30,8 @@ if(${ENABLE_TESTS})
     enable_testing()
     file(COPY testData DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
 endif()
+
+configure_file(JsonGConfig.h.in JsonGConfig.h)
 
 add_executable(
     JsonTest

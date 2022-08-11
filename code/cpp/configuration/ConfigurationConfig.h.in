@@ -1,0 +1,1 @@
+#define Configuration_VERSION_STRING "@Configuration_VERSION_MAJOR@.@Configuration_VERSION_MINOR@.@Configuration_VERSION_PATCH@.@Configuration_VERSION_TWEAK@"

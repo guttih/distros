@@ -13,6 +13,25 @@ TEST( VersionTest, constructor_string )
     EXPECT_EQ( ver.getBuild(), 4000 );
 }
 
+TEST( VersionTest, constructor_string_broken_patch )
+{
+
+    Version ver( "1.20.." );
+    EXPECT_EQ( ver.getMajor(), 0 );
+    EXPECT_EQ( ver.getMinor(), 0 );
+    EXPECT_EQ( ver.getPatch(), 0 );
+    EXPECT_EQ( ver.getBuild(), 0 );
+}
+TEST( VersionTest, constructor_string_broken_build )
+{
+
+    Version ver( "1.20.300." );
+    EXPECT_EQ( ver.getMajor(), 1 );
+    EXPECT_EQ( ver.getMinor(), 20 );
+    EXPECT_EQ( ver.getPatch(), 300 );
+    EXPECT_EQ( ver.getBuild(), 0 );
+}
+
 TEST( VersionTest, incrementNumber10 ) {
     Version ver( "1.2.3.4" );
     ver+=6;
@@ -115,4 +134,6 @@ TEST( VersionTest, toString ) {
     EXPECT_STREQ( "3.0.0.0", ver.c_str( VERSION::BUILD ) );
     EXPECT_STREQ( "3.0", ver.c_str() );
 }
+
+
 
