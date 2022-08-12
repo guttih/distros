@@ -3,7 +3,7 @@
  #include <Json/Json.h>
 #include <Json/JsonFile.h>
 #include <Json/JsonFileCollection.h>
-#include "Json/Version.h"
+#include <Json/Version.h>
 #include "Person.cpp"
 #include "ConfigurationConfig.h"
 // #include <Json/JsonGConfig.h>
